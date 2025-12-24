@@ -1,9 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-const authRoutes = require("./src/routes/authRoutes");
-const bookRoutes = require("./src/routes/bookRoutes");
-const borrowRoutes = require("./src/routes/borrowRoutes");
+const apiRoutes = require("./src/routes");
 const db = require("./src/config/db");
 
 const app = express();
@@ -11,9 +9,7 @@ const app = express();
 // Middlewares
 app.use(cors());
 app.use(express.json());
-app.use("/api/auth", authRoutes);
-app.use("/api/books", bookRoutes);
-app.use("/api/borrow", borrowRoutes);
+app.use("/api", apiRoutes);
 // Test route
 app.get("/", (req, res) => {
   res.send("Library Management Backend Running 🚀");
