@@ -5,9 +5,9 @@ const {
   returnBook,
   userHistory,
 } = require("../controllers/borrowController");
-
-router.post("/issue", borrowBook);
-router.post("/return", returnBook);
-router.get("/history/:user_id", userHistory);
+const { verifyToken } = require("../middleware/authMiddleware");
+router.post("/issue", verifyToken, borrowBook);
+router.post("/return", verifyToken, returnBook);
+router.get("/history/:user_id", verifyToken, userHistory);
 
 module.exports = router;

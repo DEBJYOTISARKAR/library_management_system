@@ -5,9 +5,9 @@ const {
   getBooks,
   deleteBook,
 } = require("../controllers/bookController");
-
-router.post("/add", addBook);
-router.get("/", getBooks);
-router.delete("/:id", deleteBook);
+const { verifyToken } = require("../middleware/authMiddleware");
+router.post("/add", verifyToken, addBook);
+router.get("/", verifyToken, getBooks);
+router.delete("/:id", verifyToken, deleteBook);
 
 module.exports = router;
